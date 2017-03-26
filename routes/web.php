@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('base');
+    return view('layouts/base');
 });
 
 Route::get('/bugreport', function () {
