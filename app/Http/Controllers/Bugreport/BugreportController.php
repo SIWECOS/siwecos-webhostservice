@@ -25,7 +25,9 @@ class BugreportController extends Controller
     public function create()
     {
       $applications = array();
-      return view('bugreport',['applications' => $applications]);
+      $exploidtypes = array();
+
+      return view('bugreport\bugreport',['applications' => $applications, 'exploidtypes' => $exploidtypes]);
     }
 
     /**
