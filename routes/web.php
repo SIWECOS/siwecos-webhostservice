@@ -15,9 +15,8 @@ Route::get('/', function () {
     return view('base');
 });
 
-Route::get('/bugreport', function () {
-	return view('bugreport');
-});
+Route::get('/bugreport', 'Bugreport\BugreportController@create');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
