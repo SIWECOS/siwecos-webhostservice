@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/invite', 'Invite\InviteController@create');
+Route::post('/invite/store', 'Invite\InviteController@store');
