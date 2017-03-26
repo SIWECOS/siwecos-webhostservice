@@ -13,7 +13,7 @@ class CreateBugreportsQueueTable extends Migration
      */
     public function up()
     {
-	    Schema::table(
+	    Schema::create(
 		    'bugreports_queue',
 		    function (Blueprint $table) {
 			    $table->integer('bugreport_id');

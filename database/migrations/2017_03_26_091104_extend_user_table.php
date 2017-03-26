@@ -17,14 +17,12 @@ class ExtendUserTable extends Migration
             'users',
             function (Blueprint $table) {
                 $table->tinyInteger('role')->index();
-                $table->string('company', 255);
-                $table->smallInteger('country')->unsigned();
-                $table->string('telephone', 255);
+                $table->string('company', 255)->default('');
+                $table->smallInteger('country')->unsigned()->default(0);
+                $table->string('telephone', 255)->default('');
                 $table->boolean('approved')->default(0);
-                $table->text('pgpkey');
-                $table->string('invite_token', 32);
-                $table->dateTime('invited_at');
-                $table->integer('invited_by');
+                $table->text('pgpkey')->nullable();
+                $table->dateTime('invited_at')->nullable();
                 $table->text('comment');
             }
         );

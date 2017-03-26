@@ -11,17 +11,17 @@
 |
 */
 
-Route::get('/', function () {
-    return view('base');
+Route::group(['middleware' => 'checkguest'], function()
+{
+	Route::get('/invite', 'Invite\InviteController@create');
+	Route::post('/invite/store', 'Invite\InviteController@store');
+
+
+	Route::get('/bugreport', 'Bugreport\BugreportController@create');
+
+	Route::get('/', function () {
+		return view('dashboard');
+	});
 });
 
-
-Route::get('/invite', 'Invite\InviteController@create');
-Route::post('/invite/store', 'Invite\InviteController@store');
-
-
-Route::get('/bugreport', 'Bugreport\BugreportController@create');
-
 Auth::routes();
-
-Route::get('/home', 'HomeController@index');
