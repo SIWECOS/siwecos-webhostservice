@@ -18,7 +18,9 @@ class CreateBugreportsTable extends Migration
 		    $table->integer('user_id');
 		    $table->dateTime('date', 191);
 		    $table->tinyInteger('sent');
-		    $table->integer('application');
+		    $table->integer('application');   /* Linked to application table */
+		    $table->integer('exploidtypes');  /* Linked to exploidtypes table */
+		    $table->string('version', 100);
 		    $table->text('signed-email');
 		    $table->rememberToken();
 		    $table->timestamps();

@@ -13,7 +13,10 @@ class CreateExploidtypesTable extends Migration
      */
     public function up()
     {
-        //
+	    Schema::create('exploidtypes', function (Blueprint $table) {
+		    $table->increments('id')->index();
+		    $table->string('exploidtype', 100);
+	    });
     }
 
     /**
