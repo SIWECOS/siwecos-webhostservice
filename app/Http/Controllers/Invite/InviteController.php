@@ -6,6 +6,8 @@ use App\Invite;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class InviteController extends Controller
 {
@@ -50,8 +52,8 @@ class InviteController extends Controller
     $invite->email = $request->email;
     $invite->reason = $request->reason;
     $invite->token = sha1(random_bytes(64));
-    $invite->send_at = '2017-03-26 10:00:00';
-    $invite->send_by = '1';
+    $invite->send_at = date('Y-m-d H:i:s');
+    $invite->send_by =  Auth::user()->id;
 
     $invite->save();
 
