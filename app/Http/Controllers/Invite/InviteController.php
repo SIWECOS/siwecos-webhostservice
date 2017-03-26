@@ -23,7 +23,7 @@ class InviteController extends Controller
    */
   public function create()
   {
-    return View('Invite/create');
+    return View('invite/create');
   }
 
   /**
