@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/bugreport', function () {
+	return view('bugreport');
+});
