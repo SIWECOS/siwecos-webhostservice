@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Invite;
 
+use App\Invite;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
 
 class InviteController extends Controller
 {
@@ -35,10 +39,26 @@ class InviteController extends Controller
   public function store(Request $request)
   {
     $this->validate($request, [
-      'firstname' => 'required|unique:posts|max:255',
-      'lastname' => 'required',
+      'firstname' => 'required|max:255',
+      'lastname' => 'required|max:255',
+      'email' => 'required|max:255',
+      'reason' => 'required|max:500'
     ]);
-    dd($request);
+
+    $invite = new Invite;
+
+    $invite->firstname = $request->firstname;
+    $invite->lastname = $request->lastname;
+    $invite->email = $request->email;
+    $invite->reason = $request->reason;
+    $invite->token = sha1(random_bytes(64));
+    $invite->send_at = date('Y-m-d H:i:s');
+    $invite->send_by =  Auth::user()->id;
+
+    $invite->save();
+
+    return redirect('/');
+
   }
 
   /**
