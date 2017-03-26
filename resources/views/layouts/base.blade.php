@@ -31,6 +31,13 @@
 					</div>
 
 					<div class="collapse navbar-collapse" id="base-navbar-collapse">
+						<!-- Left Side Of Navbar -->
+						<ul class="nav navbar-nav">
+							@if (!Auth::guest())
+								<li><a href="{{ url('/invite') }}">Invite a colleague</a></li>
+								<li><a href="{{ url('/bugreport') }}">Report a security issue</a></li>
+							@endif
+						</ul>
 						<!-- Right Side Of Navbar -->
 						<ul class="nav navbar-nav navbar-right">
 							<!-- Authentication Links -->
