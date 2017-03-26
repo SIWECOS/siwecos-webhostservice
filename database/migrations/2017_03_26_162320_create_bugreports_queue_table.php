@@ -12,7 +12,7 @@ class CreateBugreportsQueueTable extends Migration
      * @return void
      */
     public function up()
-    {
+    { 
 	    Schema::create(
 		    'bugreports_queue',
 		    function (Blueprint $table) {
