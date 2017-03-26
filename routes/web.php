@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('layouts/base');
 });
 
+
+Route::get('/invite', 'Invite\InviteController@create');
+Route::post('/invite/store', 'Invite\InviteController@store');
+
+
 Route::get('/bugreport', function () {
 	return view('bugreport');
 });
