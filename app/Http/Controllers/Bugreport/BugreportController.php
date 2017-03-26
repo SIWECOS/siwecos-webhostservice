@@ -27,7 +27,7 @@ class BugreportController extends Controller
       $applications = array();
       $exploidtypes = array();
 
-      return view('bugreport',['applications' => $applications, 'exploidtypes' => $exploidtypes]);
+      return view('bugreport\bugreport',['applications' => $applications, 'exploidtypes' => $exploidtypes]);
     }
 
     /**

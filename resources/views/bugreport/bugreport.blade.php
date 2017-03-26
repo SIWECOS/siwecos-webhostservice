@@ -2,7 +2,7 @@
 /**
  * Bug Report-Form View
  *
- * @author   Florian Häusler>
+ * @author   Florian Häusler
  */
 ?>
 <html>
