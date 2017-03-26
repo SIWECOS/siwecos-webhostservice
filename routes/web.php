@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return view('base');
 });
 
 
@@ -20,9 +20,8 @@ Route::get('/invite', 'Invite\InviteController@create');
 Route::post('/invite/store', 'Invite\InviteController@store');
 
 
-Route::get('/bugreport', function () {
-	return view('bugreport');
-});
+Route::get('/bugreport', 'Bugreport\BugreportController@create');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
