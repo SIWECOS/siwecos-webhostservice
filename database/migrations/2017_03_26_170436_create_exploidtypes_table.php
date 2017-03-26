@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBugreportsQueueTable extends Migration
+class CreateExploidtypesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class CreateBugreportsQueueTable extends Migration
      */
     public function up()
     {
-	    Schema::table(
-		    'bugreports_queue',
-		    function (Blueprint $table) {
-			    $table->integer('bugreport_id');
-			    $table->integer('user_id');
-			    $table->tinyInteger('priority');
-		    }
-	    );
+	    Schema::create('exploidtypes', function (Blueprint $table) {
+		    $table->increments('id')->index();
+		    $table->string('exploidtype', 100);
+	    });
     }
 
     /**
@@ -30,6 +26,6 @@ class CreateBugreportsQueueTable extends Migration
      */
     public function down()
     {
-	    Schema::dropIfExists('bugreports_queue');
+	     Schema::dropIfExists('exploidtypes');
     }
 }
