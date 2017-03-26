@@ -62,7 +62,7 @@
                                     </div>
                                 </fieldset>
                                 <div class="form-group">
-                                    <button class="btn btn-default">{{  __('PROCESS PREVIEW') }}</button>
+                                    <button class="btn btn-primary">{{  __('PROCESS PREVIEW') }}</button>
                                 </div>
                                 <fieldset>
                                     <div class="form-group">
@@ -81,7 +81,7 @@
                                         <span>Paste the signed e-mail body here</span>
                                     </div>
                                 </fieldset>
-                                <button type="submit" class="btn btn-default">{{  __('SUBMIT') }}</button>
+                                <button type="submit" class="btn btn-default disabled" disabled="disabled">{{  __('SUBMIT') }}</button>
                             </form>
                         </form>
                     </div>
