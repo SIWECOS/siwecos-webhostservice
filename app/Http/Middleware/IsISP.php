@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class IsIPS
+class IsISP
 {
     /**
      * Handle an incoming request.
@@ -15,7 +15,7 @@ class IsIPS
      */
     public function handle($request, Closure $next)
     {
-		if (!Auth::user()->isIPS())
+		if (!Auth::user()->isISP())
 		{
 			return response('Not authorized', 401);
 		}
