@@ -15,7 +15,7 @@
                     <div class="panel-heading">{{  __('SEND ALERT TO WEB HOSTERS') }}</div>
                     <div class="panel-body">
                         <form>
-                            <form action="/bugreport" method="post" name="bugreport">
+                            <form action="{{ URL( '/bugreport' )  }}" method="post" name="bugreport">
                                 {!! csrf_field() !!}
                                 <div class="form-group">
                                     <label for="email">{{  __('Your account') }}</label>

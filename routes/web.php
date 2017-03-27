@@ -16,8 +16,8 @@ Route::group(['middleware' => 'checkguest'], function()
 	Route::get('/invite', 'Invite\InviteController@create');
 	Route::post('/invite/store', 'Invite\InviteController@store');
 
-
 	Route::get('/bugreport', 'Bugreport\BugreportController@create');
+	Route::post('/bugreport/store', 'Bugreport\BugreportController@store');
 
 	Route::get('/', function () {
 		return view('dashboard');
