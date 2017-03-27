@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Invite;
 
 use App\Invite;
+use App\Mail\InviteMail;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 
 class InviteController extends Controller
 {
+
   /**
    * Display a listing of the resource.
    *
@@ -56,6 +59,9 @@ class InviteController extends Controller
     $invite->send_by =  Auth::user()->id;
 
     $invite->save();
+
+    Mail::to($request->email)->send(new InviteMail($invite));
+
 
     return redirect('/');
 
