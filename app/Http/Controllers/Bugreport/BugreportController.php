@@ -58,7 +58,7 @@ class BugreportController extends Controller
 
 	    $bugreport->save();
 
-	    //return redirect('/');
+	    return redirect('/');
     }
 
     /**
