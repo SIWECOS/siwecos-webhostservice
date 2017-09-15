@@ -18,9 +18,10 @@ class Invite extends Model
     *
     * @var string
     */
-    const UPDATED_AT = 'updated_at';
+    const UPDATED_AT = null;
 
-    public $timestamps = false;
+
+    public $timestamps = true;
 
     /**
     * The attributes that are mass assignable.

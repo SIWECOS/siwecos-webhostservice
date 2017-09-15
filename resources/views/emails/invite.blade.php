@@ -5,10 +5,8 @@ we have an invitation to the Siwecos Webhostserice for you.
 Your token: {{ $invite->token }}
 
 
-The Link https://???.siwecos.de/register?token={{ $invite->token }}
+The Link {{ url('register') }}?token={{ $invite->token }}
 
 
-
-regards,
-
+Regards,
 Siwecos Webhostserice Team

@@ -33,6 +33,6 @@ class InviteMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.invite');
+        return $this->text('emails.invite');
     }
 }

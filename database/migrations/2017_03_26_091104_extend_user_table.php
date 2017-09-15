@@ -22,7 +22,6 @@ class ExtendUserTable extends Migration
                 $table->string('telephone', 191)->default('');
                 $table->boolean('approved')->default(0);
                 $table->text('pgpkey')->nullable();
-                $table->string('invite_token', 191)->default('');
                 $table->integer('invited_by')->unsigned()->nullable();
                 $table->dateTime('invited_at')->nullable();
                 $table->text('invite_reason');
@@ -47,7 +46,6 @@ class ExtendUserTable extends Migration
                 $table->dropColumn('telephone');
                 $table->dropColumn('approved');
                 $table->dropColumn('pgpkey');
-                $table->dropColumn('invite_token');
                 $table->dropColumn('invited_at');
                 $table->dropColumn('invited_by');
                 $table->dropColumn('invite_reason');
