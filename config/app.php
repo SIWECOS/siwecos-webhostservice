@@ -167,6 +167,7 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
+        Webpatser\Countries\CountriesServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -180,7 +181,7 @@ return [
         /*
          * Ide Helper
          */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class
     ],
 
     /*
@@ -229,6 +230,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Countries' => Webpatser\Countries\CountriesFacade::class,
 
     ],
 
