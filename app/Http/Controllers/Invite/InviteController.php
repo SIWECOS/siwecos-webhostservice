@@ -32,8 +32,7 @@ class InviteController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'firstname' => 'required|max:191',
-            'lastname' => 'required|max:191',
+            'name' => 'required|max:255',
             'email' => 'required|max:191|unique:invites|unique:users',
             'reason' => 'required|max:500'
         ], [
@@ -42,8 +41,7 @@ class InviteController extends Controller
 
         $invite = new Invite;
 
-        $invite->firstname = $request->firstname;
-        $invite->lastname = $request->lastname;
+        $invite->name = $request->name;
         $invite->email = $request->email;
         $invite->reason = $request->reason;
         $invite->token = sha1(random_bytes(64));
@@ -51,7 +49,7 @@ class InviteController extends Controller
 
         $invite->save();
 
-        Mail::to($request->email)->send(new InviteMail($invite));
+        Mail::to($request->email)->send(new InviteMail($invite, Auth::user()));
 
         return redirect('/');
     }

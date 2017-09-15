@@ -1,12 +1,11 @@
-Hello {{ $invite->firstname }},
+Hello {{ $invite->name }},
 
-we have an invitation to the Siwecos Webhostserice for you.
+{{ $invitee->name }} invited you to the SIWECOS Webhostservice mailinglist.
 
-Your token: {{ $invite->token }}
+To learn more about the project, please read the description on our homepage: https://siwecos.de/service-fuer-webhoster/
 
-
-The Link {{ url('register') }}?token={{ $invite->token }}
-
+In order to accept the invite and complete your registration, please follow this personal link:
+{{ url('register') }}?token={{ $invite->token }}
 
 Regards,
 Siwecos Webhostserice Team
