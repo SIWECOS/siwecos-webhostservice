@@ -16,7 +16,7 @@ class ExtendUserTable extends Migration
         Schema::table(
             'users',
             function (Blueprint $table) {
-                $table->tinyInteger('role')->index();
+                $table->tinyInteger('role')->index()->default(1);
                 $table->string('company', 191)->default('');
                 $table->smallInteger('country')->unsigned()->default(0);
                 $table->string('telephone', 191)->default('');
@@ -24,8 +24,8 @@ class ExtendUserTable extends Migration
                 $table->text('pgpkey')->nullable();
                 $table->integer('invited_by')->unsigned()->nullable();
                 $table->dateTime('invited_at')->nullable();
-                $table->text('invite_reason');
-                $table->text('comment');
+                $table->text('invite_reason')->nullable();
+                $table->text('comment')->nullable();
             }
         );
     }
