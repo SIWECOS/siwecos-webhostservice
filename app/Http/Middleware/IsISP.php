@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class IsISP
 {
@@ -15,10 +16,9 @@ class IsISP
      */
     public function handle($request, Closure $next)
     {
-		if (!Auth::user()->isISP())
-		{
-			return response('Not authorized', 401);
-		}
+        if (!Auth::user()->isISP()) {
+            return response('Not authorized', 401);
+        }
 
         return $next($request);
     }

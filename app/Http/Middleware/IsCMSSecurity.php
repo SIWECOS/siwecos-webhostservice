@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class IsCMSSecurity
 {
@@ -15,10 +16,9 @@ class IsCMSSecurity
      */
     public function handle($request, Closure $next)
     {
-		if (!Auth::user()->isCMSSecurity())
-		{
-			return response('Not authorized', 401);
-		}
+        if (!Auth::user()->isCMSSecurity()) {
+            return response('Not authorized', 401);
+        }
 
         return $next($request);
     }

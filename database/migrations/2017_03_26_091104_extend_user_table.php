@@ -17,12 +17,15 @@ class ExtendUserTable extends Migration
             'users',
             function (Blueprint $table) {
                 $table->tinyInteger('role')->index();
-                $table->string('company', 255)->default('');
+                $table->string('company', 191)->default('');
                 $table->smallInteger('country')->unsigned()->default(0);
-                $table->string('telephone', 255)->default('');
+                $table->string('telephone', 191)->default('');
                 $table->boolean('approved')->default(0);
                 $table->text('pgpkey')->nullable();
+                $table->string('invite_token', 191)->default('');
+                $table->integer('invited_by')->unsigned()->nullable();
                 $table->dateTime('invited_at')->nullable();
+                $table->text('invite_reason');
                 $table->text('comment');
             }
         );
@@ -47,6 +50,7 @@ class ExtendUserTable extends Migration
                 $table->dropColumn('invite_token');
                 $table->dropColumn('invited_at');
                 $table->dropColumn('invited_by');
+                $table->dropColumn('invite_reason');
                 $table->dropColumn('comment');
             }
         );

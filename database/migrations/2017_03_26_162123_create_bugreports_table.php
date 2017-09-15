@@ -13,18 +13,18 @@ class CreateBugreportsTable extends Migration
      */
     public function up()
     {
-	    Schema::create('bugreports', function (Blueprint $table) {
-		    $table->increments('id')->index();
-		    $table->integer('user_id');
-		    $table->dateTime('date', 191);
-		    $table->tinyInteger('sent');
-		    $table->integer('application');   /* Linked to application table */
-		    $table->integer('exploidtypes');  /* Linked to exploidtypes table */
-		    $table->string('version', 100);
-		    $table->text('signed-email');
-		    $table->rememberToken();
-		    $table->timestamps();
-	    });
+        Schema::create('bugreports', function (Blueprint $table) {
+            $table->increments('id')->index();
+            $table->integer('user_id');
+            $table->dateTime('date', 191);
+            $table->tinyInteger('sent');
+            $table->integer('application');
+            $table->integer('exploidtypes');
+            $table->string('version', 100);
+            $table->text('signed-email');
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -34,6 +34,6 @@ class CreateBugreportsTable extends Migration
      */
     public function down()
     {
-	    Schema::dropIfExists('bugreports');
+        Schema::dropIfExists('bugreports');
     }
 }

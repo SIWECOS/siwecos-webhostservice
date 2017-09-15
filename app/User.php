@@ -9,9 +9,9 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-	const USERROLE_ISP = 1;
-	const USERROLE_CMSSECURITY = 2;
-	const USERROLE_CMSGARDEN = 3;
+    const USERROLE_ISP = 1;
+    const USERROLE_CMSSECURITY = 2;
+    const USERROLE_CMSGARDEN = 3;
 
     /**
      * The attributes that are mass assignable.
@@ -31,27 +31,27 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-	/**
-	 * Check if this user is a Internet service provider
-	 */
-	public function isISP()
-	{
-		return $this->role == self::USERROLE_ISP;
-	}
+    /**
+     * Check if this user is a Internet service provider
+     */
+    public function isISP()
+    {
+        return $this->role == self::USERROLE_ISP;
+    }
 
-	/**
-	 * Check if this user is a CMS security guy (or girl)
-	 */
-	public function isCMSSecurity()
-	{
-		return $this->role == self::USERROLE_CMSSECURITY;
-	}
+    /**
+     * Check if this user is a CMS security guy (or girl)
+     */
+    public function isCMSSecurity()
+    {
+        return $this->role == self::USERROLE_CMSSECURITY;
+    }
 
-	/**
-	 * Check if this user is a CMS security guy (or girl)
-	 */
-	public function isCMSGarden()
-	{
-		return $this->role == self::USERROLE_CMSGARDEN;
-	}
+    /**
+     * Check if this user is a CMS security guy (or girl)
+     */
+    public function isCMSGarden()
+    {
+        return $this->role == self::USERROLE_CMSGARDEN;
+    }
 }

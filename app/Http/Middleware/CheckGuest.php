@@ -17,7 +17,7 @@ class CheckGuest
     public function handle($request, Closure $next, $guard = null)
     {
         if (!Auth::check()) {
-			return redirect()->guest('login');
+            return redirect()->guest('login');
         }
 
         return $next($request);

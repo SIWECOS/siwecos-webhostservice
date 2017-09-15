@@ -11,17 +11,15 @@ class InviteMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-  /**
-   * The order instance.
-   *
-   * @var invite
-   */
-  public $invite;
+    /**
+    * The order instance.
+    *
+    * @var invite
+    */
+    public $invite;
 
     /**
      * Create a new message instance.
-     *
-     * @return void
      */
     public function __construct($invite)
     {
