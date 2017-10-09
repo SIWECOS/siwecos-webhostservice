@@ -19,7 +19,7 @@ class ExtendUserTable extends Migration
                 $table->tinyInteger('role')->index()->default(1);
                 $table->string('company', 191)->default('');
                 $table->smallInteger('country')->unsigned()->default(0);
-                $table->string('telephone', 191)->default('');
+                $table->string('telephone', 191)->nullable()->default('');
                 $table->boolean('approved')->default(0);
                 $table->text('pgpkey')->nullable();
                 $table->integer('invited_by')->unsigned()->nullable();

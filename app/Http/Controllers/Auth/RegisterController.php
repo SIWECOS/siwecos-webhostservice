@@ -75,7 +75,7 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'pgpkey' => 'required',
+            'pgpkey' => 'required|pgpkey',
             'company' => 'required|max:255',
             'token' => 'required|exists:invites,token',
             'telephone' => 'max:255',
