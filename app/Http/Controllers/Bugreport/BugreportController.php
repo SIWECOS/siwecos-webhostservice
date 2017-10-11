@@ -16,10 +16,13 @@ class BugreportController extends Controller
      */
     public function create()
     {
-        $applications = array();
-        $exploittypes = array();
-
-        return view('bugreport\bugreport', ['applications' => $applications, 'exploidtypes' => $exploittypes]);
+        return view(
+            'bugreport/create',
+            [
+                'applications' => config('app.siwecos.applications'),
+                'exploittypes' => config('app.siwecos.exploittypes')
+            ]
+        );
     }
 
     /**
@@ -34,8 +37,8 @@ class BugreportController extends Controller
             $request,
             [
                 'application'  => 'required|max:11',
-             'version'      => 'required|max:100',
-             'signedemail' => 'required'
+                'version'      => 'required|max:100',
+                'signedemail' => 'required'
             ]
         );
 

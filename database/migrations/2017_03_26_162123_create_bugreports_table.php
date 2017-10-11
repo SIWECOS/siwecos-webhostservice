@@ -19,9 +19,15 @@ class CreateBugreportsTable extends Migration
             $table->dateTime('date', 191);
             $table->tinyInteger('sent');
             $table->integer('application');
-            $table->integer('exploidtypes');
+            $table->integer('exploittype');
             $table->string('version', 100);
-            $table->text('signed-email');
+            $table->tinyInteger('filterable');
+            $table->text('vulnerability');
+            $table->longText('filterdescription');
+            $table->longText('modsecurityrules');
+            $table->longText('plaintextrules');
+            $table->longText('signedemail');
+            $table->string('infourl', 255);
             $table->rememberToken();
             $table->timestamps();
         });

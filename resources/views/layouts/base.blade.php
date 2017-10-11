@@ -46,10 +46,12 @@
                         <ul class="nav navbar-nav">
                             @if (!Auth::guest())
                                 @if (Auth::user()->isISP())
-                                    <li><a href="{{ url('/invite') }}">Invite a colleague</a></li>
+                                    <li><a href="{{ url('/invite') }}">Invite a Colleague</a></li>
                                 @elseif (Auth::user()->isCMSSecurity())
-                                    <li><a href="{{ url('/bugreport') }}">Report a security issue</a></li>
+                                    <li><a href="{{ url('/notification') }}">Create Notification Mail</a></li>
+                                    <li><a href="{{ url('/bugreport') }}">Create Incident Mail</a></li>
                                 @endif
+                                <li><a href="{{ url('/bugreports') }}">List Incidents</a></li>
                             @endif
                         </ul>
                         <!-- Right Side Of Navbar -->

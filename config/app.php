@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost/siwecos/public'),
+    'url' => env('APP_URL', 'http://localhost:4820/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -233,5 +233,25 @@ return [
         'Countries' => Webpatser\Countries\CountriesFacade::class,
 
     ],
+
+    'siwecos' => [
+        'applications' => [
+            1 => 'TYPO3',
+            2 => 'Joomla',
+            3 => 'WordPress',
+            4 => 'Contao',
+            5 => 'Drupal'
+        ],
+
+        'exploittypes' => [
+            1 => 'RCE',
+            2 => 'SQLi',
+            3 => 'XSS',
+            4 => 'CSRF',
+            5 => 'Incorrect Access Control',
+            6 => 'Directory Traversal',
+            7 => 'File Upload'
+        ]
+    ]
 
 ];

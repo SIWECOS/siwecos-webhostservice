@@ -27,7 +27,10 @@ class Bugreport extends Model
     *
     * @var array
     */
-    protected $fillable = ['application', 'version', 'signedemail',];
+    protected $fillable = [
+        'application', 'version', 'signedemail', 'exploittype', 'vulnerability',
+        'filterdescription', 'modsecurityrules', 'plaintextrules', 'infourl'
+    ];
 
     /**
     * The attributes that should be hidden for arrays.
@@ -35,4 +38,11 @@ class Bugreport extends Model
     * @var array
     */
     protected $hidden = ['token',];
+
+    protected $casts = [
+        'modsecurityrules' => 'array',
+        'plaintextrules' => 'array',
+        'exploittype' => 'int',
+        'application' => 'int'
+    ];
 }
