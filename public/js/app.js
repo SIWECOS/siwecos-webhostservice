@@ -108,7 +108,7 @@ jQuery(document).ready(function ($) {
             $(this).parents('.input-group').remove();
         });
 
-        // Implement auto-refresh for preview
+        // Implement auto-refresh for bugreport preview
         $('.incidentform fieldset:first-child').on('change', 'input, textarea, select', function () {
             $.ajax({
                 type: "POST",
@@ -120,7 +120,7 @@ jQuery(document).ready(function ($) {
             });
         });
 
-        // Implement signature validation
+        // Implement bugreport signature validation
         $('.incidentform #signedemail').change(function () {
             $('.incidentform [type=submit]').attr('disabled', 'disabled').addClass('disabled');
 
@@ -134,6 +134,41 @@ jQuery(document).ready(function ($) {
                 },
                 success: function success(response) {
                     $('.incidentform *[type=submit]').removeAttr('disabled').removeClass('disabled');
+                },
+                error: function error(response) {
+                    alert(response.responseJSON.signedtext[0]);
+                }
+            });
+        });
+    }
+
+    if ($('.notificationform').length) {
+        // Implement auto-refresh for notification preview
+        $('.notificationform fieldset:first-child').on('change', 'input, textarea, select', function () {
+            $.ajax({
+                type: "POST",
+                url: '/notification/mail',
+                data: $(".notificationform form").serialize(),
+                success: function success(response) {
+                    $('#clipboard').val(response.body);
+                }
+            });
+        });
+
+        // Implement notification signature validation
+        $('.notificationform #signedemail').change(function () {
+            $('.notificationform [type=submit]').attr('disabled', 'disabled').addClass('disabled');
+
+            $.ajax({
+                type: "POST",
+                url: '/pgp/verifysignature',
+                data: {
+                    signedtext: $("#signedemail").val(),
+                    plaintext: $("#clipboard").val(),
+                    _token: $("*[name=_token]").val()
+                },
+                success: function success(response) {
+                    $('.notificationform *[type=submit]').removeAttr('disabled').removeClass('disabled');
                 },
                 error: function error(response) {
                     alert(response.responseJSON.signedtext[0]);

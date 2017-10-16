@@ -48,7 +48,7 @@
                                 @if (Auth::user()->isISP())
                                     <li><a href="{{ url('/invite') }}">Invite a Colleague</a></li>
                                 @elseif (Auth::user()->isCMSSecurity())
-                                    <li><a href="{{ url('/notification') }}">Create Notification Mail</a></li>
+                                    <li><a href="{{ url('/notification/create') }}">Create Pre-Notification Mail</a></li>
                                     <li><a href="{{ url('/bugreport/create') }}">Create Incident Mail</a></li>
                                 @endif
                                 <li><a href="{{ url('/') }}">List Incidents</a></li>
