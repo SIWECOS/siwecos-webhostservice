@@ -43,6 +43,10 @@ class InviteMail extends Mailable
      */
     public function build()
     {
+        $this->subject(
+            'SIWECOS Webhost service invitation'
+        );
+
         return $this->text('emails.invite');
     }
 }

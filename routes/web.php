@@ -16,6 +16,7 @@ Route::group(['middleware' => 'checkguest'], function () {
     Route::post('/invite/store', 'Invite\InviteController@store');
 
     Route::get('/', 'Bugreport\BugreportController@index');
+    Route::get('/bugreport/{id}', 'Bugreport\BugreportController@show');
 });
 
 Route::group(['middleware' => 'iscmssecurity'], function () {
@@ -23,7 +24,6 @@ Route::group(['middleware' => 'iscmssecurity'], function () {
     Route::post('/notification/mail', 'Notification\NotificationController@createMail');
     Route::post('/notification/send', 'Notification\NotificationController@send');
     Route::get('/bugreport/create', 'Bugreport\BugreportController@create');
-    Route::get('/bugreport/{id}', 'Bugreport\BugreportController@show');
     Route::post('/bugreport/store', 'Bugreport\BugreportController@store');
     Route::post('/bugreport/mail', 'Bugreport\BugreportController@createMail');
 
