@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
-
 class InviteController extends Controller
 {
     /**
@@ -50,6 +49,8 @@ class InviteController extends Controller
         $invite->save();
 
         Mail::to($request->email)->send(new InviteMail($invite, Auth::user()));
+
+        \Session::flash('message', 'Successfully sent invitiation');
 
         return redirect('/');
     }

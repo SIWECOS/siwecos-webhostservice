@@ -66,6 +66,8 @@ class NotificationController extends Controller
         // Send dispatcher command
         dispatch(new SendNotificationMail($request->toArray()));
 
+        \Session::flash('message', 'Successfully queued notification for sending');
+
         return redirect('/');
     }
 }

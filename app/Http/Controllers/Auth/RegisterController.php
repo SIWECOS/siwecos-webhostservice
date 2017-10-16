@@ -115,6 +115,8 @@ class RegisterController extends Controller
         $user->invite_reason = $invite->reason;
         $user->save();
 
+        \Session::flash('message', 'Registration completed successfully');
+
         return $user;
     }
 }

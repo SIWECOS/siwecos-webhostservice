@@ -79,6 +79,8 @@ class BugreportController extends Controller
         // Send dispatcher command
         dispatch(new SendBugreportMail($bugreport));
 
+        \Session::flash('message', 'Successfully queued report for sending');
+
         return redirect('/');
     }
 

@@ -11,7 +11,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Fonts -->
-        <link href="{{ asset('css/app.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
 
         <!-- Scripts -->
@@ -46,11 +46,14 @@
                         <ul class="nav navbar-nav">
                             @if (!Auth::guest())
                                 <li><a href="{{ url('/') }}">List Incidents</a></li>
-                                @if (Auth::user()->isCMSSecurity())
+                                @if (Auth::user()->isCMSSecurity() || Auth::user()->isCMSGarden())
                                     <li><a href="{{ url('/notification/create') }}">Create Pre-Notification Mail</a></li>
                                     <li><a href="{{ url('/bugreport/create') }}">Create Incident Mail</a></li>
                                 @endif
                                 <li><a href="{{ url('/invite') }}">Invite a Colleague</a></li>
+                                @if (Auth::user()->isCMSGarden())
+                                    <li><a href="{{ url('/users') }}">List of Users</a></li>
+                                @endif
                             @endif
                         </ul>
                         <!-- Right Side Of Navbar -->
@@ -65,6 +68,9 @@
                                     </a>
 
                                     <ul class="dropdown-menu" role="menu">
+                                        <li>
+                                            <a href="{{ url('/user/profile') }}">Profile</a>
+                                        </li>
                                         <li>
                                             <a href="{{ route('logout') }}"
                                                 onclick="event.preventDefault();
@@ -84,7 +90,16 @@
                 </div>
             </nav>
             <div class="container content">
-                 @yield('content')
+                @if(Session::has('message'))
+                    <div class="alert alert-info alert-dismissable">
+                        <h4><i class="glyphicon glyphicon-info-sign"></i> Message</h4>
+                        <ul class="errors">
+                            <li>{{ Session::get('message') }}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                @yield('content')
             </div>
         </div>
         <script src="{{ asset('js/app.js') }}"></script>
