@@ -86,6 +86,7 @@ return [
     'uploaded'             => 'The :attribute failed to upload.',
     'url'                  => 'The :attribute format is invalid.',
     'pgpkey'               => 'Please enter a valid PGP key',
+    'pgpsignature'         => 'Invalid PGP signature',
 
     /*
     |--------------------------------------------------------------------------

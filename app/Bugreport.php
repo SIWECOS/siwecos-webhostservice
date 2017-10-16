@@ -11,7 +11,7 @@ class Bugreport extends Model
     *
     * @var string
     */
-    const CREATED_AT = 'send_at';
+    const CREATED_AT = 'created_at';
 
     /**
     * The name of the "updated at" column.
@@ -20,8 +20,6 @@ class Bugreport extends Model
     */
     const UPDATED_AT = 'updated_at';
 
-    public $timestamps = false;
-
     /**
     * The attributes that are mass assignable.
     *
@@ -29,7 +27,7 @@ class Bugreport extends Model
     */
     protected $fillable = [
         'application', 'version', 'signedemail', 'exploittype', 'vulnerability',
-        'filterdescription', 'modsecurityrules', 'plaintextrules', 'infourl'
+        'filterdescription', 'modsecurityrules', 'plaintextrules', 'infourl', 'filterable'
     ];
 
     /**

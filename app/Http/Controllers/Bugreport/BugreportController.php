@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bugreport;
 
 use App\Bugreport;
+use App\Jobs\SendBugreportMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,29 @@ class BugreportController extends Controller
     }
 
     /**
+     * Create mail from template and return back to application
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function createMail(Request $request)
+    {
+        $this->validate(
+            $request,
+            [
+                'application'   => 'integer|min:1|max:5',
+                'exploittype'  => 'integer|min:1|max:7',
+                'version'       => 'max:100',
+            ]
+        );
+
+        return \Response::json([
+            'body' => \View::make('bugreport.mailtemplate', ["request" => $request])->render()
+        ]);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -36,24 +60,53 @@ class BugreportController extends Controller
         $this->validate(
             $request,
             [
-                'application'  => 'required|max:11',
-                'version'      => 'required|max:100',
-                'signedemail' => 'required'
+                'application'   => 'required|integer|min:1|max:5',
+                'exploittype'  => 'required|integer|min:1|max:7',
+                'infourl'       => 'required',
+                'version'       => 'required|max:100',
+                'vulnerability' => 'required',
+                'signedemail'   => 'required|pgpsignature'
             ]
         );
 
-        $bugreport = new Bugreport;
+        $bugreport = new Bugreport();
+        $bugreport->fill($request->toArray());
 
-        $bugreport->application     = $request->application;
-        $bugreport->version         = $request->version;
-        $bugreport->signedemail    = $request->signedemail;
-
-        $bugreport->token     = sha1(random_bytes(64));
-        $bugreport->date      = date('Y-m-d H:i:s');
         $bugreport->user_id   = Auth::user()->id;
 
         $bugreport->save();
 
+        // Send dispatcher command
+        dispatch(new SendBugreportMail($bugreport));
+
         return redirect('/');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  Bugreport  $bugreports  bug reports model
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index(Bugreport $bugreports)
+    {
+        $bugreports = $bugreports->orderBy('created_at', 'desc')->paginate(30);
+
+        return view('bugreport.index', compact('bugreports'));
+    }
+
+    /**
+     * Show details of a bug report
+     *
+     * @param  int  $bugreportId  bug report id
+     *
+     * @return Response
+     */
+    public function show($bugreportId, Bugreport $bugreports)
+    {
+        $report = $bugreports->findOrFail($bugreportId);
+
+        return view('bugreport.show', compact('report'));
     }
 }

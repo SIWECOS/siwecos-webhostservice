@@ -1,6 +1,6 @@
 Hello {{ $invite->name }},
 
-{{ $invitee->name }} invited you to the SIWECOS Webhostservice mailinglist.
+{{ $invitee->name }} invited you to the SIWECOS Webhost service mailinglist.
 
 To learn more about the project, please read the description on our homepage: https://siwecos.de/service-fuer-webhoster/
 

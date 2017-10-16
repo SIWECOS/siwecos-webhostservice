@@ -15,12 +15,16 @@ Route::group(['middleware' => 'checkguest'], function () {
     Route::get('/invite', 'Invite\InviteController@create');
     Route::post('/invite/store', 'Invite\InviteController@store');
 
-    Route::get('/bugreport', 'Bugreport\BugreportController@create');
-    Route::post('/bugreport/store', 'Bugreport\BugreportController@store');
+    Route::get('/', 'Bugreport\BugreportController@index');
+});
 
-    Route::get('/', function () {
-        return view('dashboard');
-    });
+Route::group(['middleware' => 'iscmssecurity'], function () {
+    Route::get('/bugreport/create', 'Bugreport\BugreportController@create');
+    Route::get('/bugreport/{id}', 'Bugreport\BugreportController@show');
+    Route::post('/bugreport/store', 'Bugreport\BugreportController@store');
+    Route::post('/bugreport/mail', 'Bugreport\BugreportController@createMail');
+
+    Route::post('/pgp/verifysignature', 'Pgp\PgpController@verifySignature');
 });
 
 Auth::routes();

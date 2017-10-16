@@ -2,7 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
-class DatabaseSeeder extends Seeder {
+class DatabaseSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
@@ -14,5 +15,6 @@ class DatabaseSeeder extends Seeder {
 
         $this->call('CountriesSeeder');
         $this->command->info('Seeded the countries!');
+        $this->call('KeySeeder');
     }
 }
