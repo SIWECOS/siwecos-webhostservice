@@ -16,7 +16,7 @@ class IsCMSSecurity
      */
     public function handle($request, Closure $next)
     {
-        if (!Auth::user()->isCMSSecurity()) {
+        if (!Auth::user()->isCMSSecurity() && !Auth::user()->isCMSGarden()) {
             return response('Not authorized', 401);
         }
 

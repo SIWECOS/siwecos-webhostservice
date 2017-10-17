@@ -11,6 +11,17 @@
 |
 */
 
+Route::group(['middleware' => 'iscmssecurity'], function () {
+    Route::get('/notification/create', 'Notification\NotificationController@create');
+    Route::post('/notification/mail', 'Notification\NotificationController@createMail');
+    Route::post('/notification/send', 'Notification\NotificationController@send');
+    Route::get('/bugreport/create', 'Bugreport\BugreportController@create');
+    Route::post('/bugreport/store', 'Bugreport\BugreportController@store');
+    Route::post('/bugreport/mail', 'Bugreport\BugreportController@createMail');
+
+    Route::post('/pgp/verifysignature', 'Pgp\PgpController@verifySignature');
+});
+
 Route::group(['middleware' => 'checkguest'], function () {
     Route::get('/user/profile', 'Auth\ProfileController@show');
     Route::post('/user/profile', 'Auth\ProfileController@update');
@@ -20,17 +31,6 @@ Route::group(['middleware' => 'checkguest'], function () {
 
     Route::get('/', 'Bugreport\BugreportController@index');
     Route::get('/bugreport/{id}', 'Bugreport\BugreportController@show');
-});
-
-Route::group(['middleware' => ['iscmssecurity', 'iscmsgarden']], function () {
-    Route::get('/notification/create', 'Notification\NotificationController@create');
-    Route::post('/notification/mail', 'Notification\NotificationController@createMail');
-    Route::post('/notification/send', 'Notification\NotificationController@send');
-    Route::get('/bugreport/create', 'Bugreport\BugreportController@create');
-    Route::post('/bugreport/store', 'Bugreport\BugreportController@store');
-    Route::post('/bugreport/mail', 'Bugreport\BugreportController@createMail');
-
-    Route::post('/pgp/verifysignature', 'Pgp\PgpController@verifySignature');
 });
 
 Route::group(['middleware' => 'iscmsgarden'], function () {
