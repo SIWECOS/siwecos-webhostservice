@@ -19,7 +19,7 @@ This project ships with a local development environment based upon docker-compos
 
 2. Clone this repo
 
-	`git clone git@github.com:CMS-Garden/siwecos-webhostservice.git`
+	`git clone https://github.com/SIWECOS/siwecos-webhostservice.git`
 	
 3. Install dependencies
 
@@ -30,14 +30,17 @@ This project ships with a local development environment based upon docker-compos
 
 	`cd devenv`   
 	`docker-compose up -d`
+	
+5. Create the .env.example file to .env and set a secret key
 
-5. Run the database migrations and seeders in the docker environment
+6. Run the database migrations and seeders in the docker environment
 
 	`docker exec -it siwecoswebhostservice-php-fpm bash`   
 	`su -s /bin/bash www-data`   
+	`cd /application`
 	`php artisan migrate`   
 	`php artisan db:seed`
 
-6. Create your user account by connecting to the DB instance running on localhost:4822, use `3` for the role column to gain the highest privileges
+7. Create your user account by connecting to the DB instance running on localhost:4822, use `3` for the role column to gain the highest privileges
 
-7. Connect to the application running on localhost: 4820
+8. Connect to the application running on localhost:4820
