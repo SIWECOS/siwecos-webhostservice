@@ -13,7 +13,7 @@ class BugreportMail extends Mailable
     use Queueable, SerializesModels;
 
     /**
-    * The invite instance.
+    * The Bugrepott instance.
     *
     * @var Bugreport
     */
@@ -28,6 +28,9 @@ class BugreportMail extends Mailable
 
     /**
      * Create a new message instance.
+     *
+     * @param Bugreport $bugreport
+     * @param           $text
      */
     public function __construct(Bugreport $bugreport, $text)
     {

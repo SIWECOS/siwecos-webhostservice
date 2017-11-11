@@ -28,6 +28,9 @@ class NotificationMail extends Mailable
 
     /**
      * Create a new message instance.
+     *
+     * @param $data
+     * @param $text
      */
     public function __construct($data, $text)
     {

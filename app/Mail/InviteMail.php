@@ -29,6 +29,9 @@ class InviteMail extends Mailable
 
     /**
      * Create a new message instance.
+     *
+     * @param Invite $invite
+     * @param User   $invitee
      */
     public function __construct(Invite $invite, User $invitee)
     {
