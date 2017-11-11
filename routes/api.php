@@ -13,3 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group(['middleware' => ['auth.basic']], function () {
+    Route::get('/bugreports', 'Api\BugreportController@index');
+    Route::get('/bugreport/{id}', 'Api\BugreportController@show');
+});
