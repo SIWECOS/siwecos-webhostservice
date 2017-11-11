@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Invite;
 use App\User;
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -113,6 +114,9 @@ class RegisterController extends Controller
         $user->invited_by = $invite->send_by;
         $user->invited_at = $invite->send_at;
         $user->invite_reason = $invite->reason;
+        $user->last_reminder_confirmed = 1;
+        $user->last_reminder = Carbon::now();
+
         $user->save();
 
         \Session::flash('message', 'Registration completed successfully');

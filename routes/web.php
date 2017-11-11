@@ -11,6 +11,8 @@
 |
 */
 
+Route::get('/confirmreminder', 'User\UserController@confirmReminder');
+
 Route::group(['middleware' => 'iscmssecurity'], function () {
     Route::get('/notification/create', 'Notification\NotificationController@create');
     Route::post('/notification/mail', 'Notification\NotificationController@createMail');

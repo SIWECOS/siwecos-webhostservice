@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webpatser\Countries\Countries;
 
 class UserController extends Controller
@@ -26,5 +27,41 @@ class UserController extends Controller
         $countries = $countries->getListForSelect();
 
         return view('user.index', compact('users', 'countries'));
+    }
+
+    /**
+     * Confirms a period reminder for a user
+     *
+     * @param Request $request
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function confirmReminder(Request $request, User $userModel)
+    {
+        // Check if the token is present
+        if (!$request->input('token')) {
+            return redirect('/login');
+        }
+
+        // Check if the user id is present
+        if (!$request->input('user')) {
+            return redirect('/login');
+        }
+
+        $user = $userModel->where('last_reminder_token', '=', $request->input('token'))
+            ->where('id', '=', $request->input('user'))
+            ->first();
+
+        if ($user === null) {
+            throw new NotFoundHttpException();
+        }
+
+        $user->last_reminder_confirmed = 1;
+        $user->last_reminder_token = null;
+        $user->save();
+
+        \Session::flash('message', 'Account confirmed successfully!');
+
+        return redirect('/login');
     }
 }
