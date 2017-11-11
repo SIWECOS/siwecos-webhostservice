@@ -38,6 +38,11 @@
                                         </label>
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label for="announcement">{{  __('Announcement URL') }}</label>
+                                    <input type="url" class="form-control" id="announcement" name="announcement">
+                                </div>
                             </fieldset>
 
                             <fieldset>

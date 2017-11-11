@@ -12,6 +12,11 @@ The issue is considered as critical and so we would like to encourage you to not
 Furthermore, we'll share a set of WAF rules with you, once the patch is available.
 
 @endif
+@if($request["announcement"])
+You can find the official announcement for this issue here:
+{{ $request['announcement'] }}
+
+@endif
 If you have any further questions, feel free to ask!
 
 Kind regards
