@@ -101,7 +101,7 @@ class RegisterController extends Controller
         // Delete invite
         $invite->delete();
 
-        $user = User::create([
+        $user = new User([
             'name' => $data['name'],
             'company' => $data['company'],
             'country' => $data['country'],
