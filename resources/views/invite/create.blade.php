@@ -51,7 +51,12 @@
                                 </div>
                             </div>
 
-                            <input type="submit" value="{{ __('Submit') }}" />
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <input type="submit" class="btn btn-success" value="{{ __('Send Invite') }}" />
+                                </div>
+                            </div>
+
                             {{ csrf_field() }}
                         </form>
                     </div>

@@ -88,7 +88,7 @@
                                     <span>Paste the signed e-mail body here (Hint: gpg -u hosterservice@siwecos.de --clearsign tmpfile.txt)</span>
                                 </div>
                             </fieldset>
-                            <button type="submit" class="btn btn-default disabled" disabled="disabled">{{  __('SUBMIT') }}</button>
+                            <button type="submit" class="btn btn-success disabled" disabled="disabled">{{  __('Send Mail') }}</button>
                             {!! csrf_field() !!}
                         </form>
                     </div>
