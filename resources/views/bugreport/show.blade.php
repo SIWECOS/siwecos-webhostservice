@@ -8,13 +8,15 @@
                     <div class="panel-heading"><h4>{{  __('Incident Details') }}</h4></div>
                     <div class="panel-body">
                         <dl class="dl-horizontal">
+                            <dt>{{  __('Created at') }} </dt>
+                            <dd>{{ $report->created_at }}</dd>
                             <dt>{{  __('CMS') }} </dt>
                             <dd>{{ config("app.siwecos.applications." . $report->application) }}</dd>
                             <dt>{{  __('Affected Versions') }} </dt>
                             <dd>{{ $report->version }}</dd>
                             <dt>{{  __('Exploittype') }} </dt>
                             <dd>{{ config("app.siwecos.exploittypes." . $report->exploittype) }}</dd>
-                            <dt>{{  __('Vulnerability Description') }}</dt>
+                            <dt>{{  __('Description') }}</dt>
                             <dd>{!! nl2br(e($report->vulnerability)) !!} </dd>
                             <dt>{{  __('Can be filtered?') }}</dt>
                             <dd>@if($report->filterable)Yes @else No @endif</dd>
