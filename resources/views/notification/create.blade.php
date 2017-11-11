@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label for="clipboard">{{  __('Signed E-Mail') }}</label>
                                     <textarea class="form-control" rows="25" id="signedemail" name="signedemail"></textarea>
-                                    <span>Paste the signed e-mail body here (Hint: gpg -u hosterservice@siwecos.de --clear-sign tmpfile.txt)</span>
+                                    <span>Paste the signed e-mail body here (Hint: gpg -u hosterservice@siwecos.de --clearsign tmpfile.txt)</span>
                                 </div>
                             </fieldset>
                             <button type="submit" class="btn btn-default disabled" disabled="disabled">{{  __('SUBMIT') }}</button>
