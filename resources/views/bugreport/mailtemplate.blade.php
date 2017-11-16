@@ -34,7 +34,7 @@ mod_security Ruleset:
 @endforeach
 @endif
 
-mod_security Ruleset:
+Plaintext Ruleset:
 @if(count($request["plaintextrules"]))
 @foreach($request["plaintextrules"] as $plaintextrule)
 {!! $plaintextrule !!}
