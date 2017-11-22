@@ -21,9 +21,9 @@ class CreateBugreportsTable extends Migration
             $table->string('version', 100);
             $table->tinyInteger('filterable')->default(0);
             $table->text('vulnerability');
-            $table->longText('filterdescription');
-            $table->longText('modsecurityrules');
-            $table->longText('plaintextrules');
+            $table->longText('filterdescription')->nullable();
+            $table->longText('modsecurityrules')->nullable();
+            $table->longText('plaintextrules')->nullable();
             $table->longText('signedemail');
             $table->string('infourl', 255);
             $table->timestamps();

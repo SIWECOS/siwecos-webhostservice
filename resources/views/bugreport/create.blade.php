@@ -38,6 +38,14 @@
                                     <textarea class="form-control" id="vulnerability" name="vulnerability" rows="15" required="required" cols="20"></textarea>
                                 </div>
 
+                                <div class="form-group idgroup">
+                                    <label>{{ __('CVE ID\'s') }}</label>
+
+                                    <div>
+                                        <button class="btn btn-success btn-add" data-group="cveids">Add ID</button>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label>{{  __('Can be filtered?') }}</label>
                                     <div class="checkbox">
@@ -49,7 +57,7 @@
 
                                 <div class="form-group filterdetails">
                                     <label for="filterdescription">{{ __('Filter Description') }}</label>
-                                    <textarea class="form-control" id="filterdescription" name="filterdescription" rows="8" required="required" cols="20"></textarea>
+                                    <textarea class="form-control" id="filterdescription" name="filterdescription" rows="8" cols="20"></textarea>
                                 </div>
 
                                 <div class="form-group filterdetails rulegroup">

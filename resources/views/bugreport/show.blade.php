@@ -18,6 +18,10 @@
                             <dd>{{ config("app.siwecos.exploittypes." . $report->exploittype) }}</dd>
                             <dt>{{  __('Description') }}</dt>
                             <dd>{!! nl2br(e($report->vulnerability)) !!} </dd>
+                            @if(count($report->cveids))
+                            <dt>{{  __('CVE ID\'s') }}</dt>
+                            <dd>{{ implode(", ", $report->cveids) }}</dd>
+                            @endif
                             <dt>{{  __('Can be filtered?') }}</dt>
                             <dd>@if($report->filterable)Yes @else No @endif</dd>
                             @if($report->filterable)

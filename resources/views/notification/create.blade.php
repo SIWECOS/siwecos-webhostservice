@@ -30,6 +30,14 @@
                                     <input type="time" class="form-control" id="time" name="time" required="required">
                                 </div>
 
+                                <div class="form-group idgroup">
+                                    <label>{{ __('CVE ID\'s') }}</label>
+
+                                    <div>
+                                        <button class="btn btn-success btn-add" data-group="cveids">Add ID</button>
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label>{{  __('Can be filtered?') }}</label>
                                     <div class="checkbox">

@@ -15,6 +15,13 @@ Vulnerability Type: {{ config('app.siwecos.exploittypes.' . $request["exploittyp
 Vulnerability Description:
 {!! $request["vulnerability"] !!}
 
+@if(count($request["cveids"]))
+CVE IDs:
+@foreach($request["cveids"] as $cveid)
+{{ $cveid }}
+@endforeach
+
+@endif
 Serverside filtering possible?
 @if($request["filterable"])
 Yes

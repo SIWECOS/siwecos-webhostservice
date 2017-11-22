@@ -27,7 +27,7 @@ class Bugreport extends Model
     */
     protected $fillable = [
         'application', 'version', 'signedemail', 'exploittype', 'vulnerability',
-        'filterdescription', 'modsecurityrules', 'plaintextrules', 'infourl', 'filterable'
+        'filterdescription', 'modsecurityrules', 'plaintextrules', 'infourl', 'filterable', 'cveids'
     ];
 
     /**
@@ -40,6 +40,7 @@ class Bugreport extends Model
     protected $casts = [
         'modsecurityrules' => 'array',
         'plaintextrules' => 'array',
+        'cveids' => 'array',
         'exploittype' => 'int',
         'application' => 'int'
     ];

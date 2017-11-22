@@ -25,7 +25,15 @@ jQuery( document ).ready(function( $ ) {
             $(this).before($('<div class="form-group input-group"><textarea name="' + groupname + '[]" class="form-control"></textarea><span class="input-group-btn"><button type="button" class="btn btn-danger btn-remove">-</button></span></div>'));
         });
 
-        $('.rulegroup').on('click', ' .btn-remove', function (e) {
+        $('.idgroup .btn-add').click(function (e) {
+            e.preventDefault();
+
+            var groupname = $(this).attr('data-group');
+
+            $(this).before($('<div class="form-group input-group"><input type="text" name="' + groupname + '[]" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-danger btn-remove">-</button></span></div>'));
+        });
+
+        $('.rulegroup, .idgroup').on('click', ' .btn-remove', function (e) {
             e.preventDefault();
 
             $(this).parents('.input-group').remove();
@@ -77,6 +85,20 @@ jQuery( document ).ready(function( $ ) {
                     $('#clipboard').val(response.body);
                 }
             });
+        });
+
+        $('.idgroup .btn-add').click(function (e) {
+            e.preventDefault();
+
+            var groupname = $(this).attr('data-group');
+
+            $(this).before($('<div class="form-group input-group"><input type="text" name="' + groupname + '[]" class="form-control" /><span class="input-group-btn"><button type="button" class="btn btn-danger btn-remove">-</button></span></div>'));
+        });
+
+        $('.idgroup').on('click', ' .btn-remove', function (e) {
+            e.preventDefault();
+
+            $(this).parents('.input-group').remove();
         });
 
         // Implement notification signature validation
