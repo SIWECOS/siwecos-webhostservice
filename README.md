@@ -26,31 +26,34 @@ that will bring you up to speed pretty fast.
 
 1. Download and install [Docker](https://www.docker.com/).
 
-2. Clone this repo
+2. Clone this [github repo](https://github.com/SIWECOS/siwecos-webhostservice)
 
-	`git clone https://github.com/SIWECOS/siwecos-webhostservice.git`
+    * `git clone https://github.com/SIWECOS/siwecos-webhostservice.git`
 
 3. Install dependencies
 
-	`npm install`
-	`composer install`
+    * `npm install`
+    * `composer install`
 
 4. Switch into `devenv` folder and fire up the docker processes (sudo might be needed):
 
-	`cd devenv`
-	`docker-compose up -d`
+    * `cd devenv`
+    * `docker-compose up -d`
 
 5. Copy the `.env.example` file to `.env` and set a secret key
 
 6. Run the database migrations and seeders in the docker environment
 
-	`docker exec -it siwecoswebhostservice-php-fpm bash`
-	`su -s /bin/bash www-data`
-	`cd /application`
-	`php artisan migrate`
-	`php artisan db:seed`
+    * `docker exec -it siwecoswebhostservice-php-fpm bash`
+    * `su -s /bin/bash www-data`
+    * `cd /application`
+    * `php artisan migrate`
+    * `php artisan db:seed`
 
-7. Create your user account by connecting to the DB instance running on `localhost:4822`
-Set the `role` column to `3` for the highest privileges.
+7. Create your user account by running the command below inside of the container.
+Make sure to set the users role to `3` "`CMS Garden Admin`".
 
-8. Open the app in your browser `localhost:4820`
+    * `docker exec -it siwecoswebhostservice-php-fpm bash`
+    * `php artisan user:create`
+
+8. Open the app in your browser [localhost:4820](localhost:4820)

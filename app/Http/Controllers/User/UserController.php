@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Bugreport;
-use App\Jobs\SendBugreportMail;
+use App\Http\Controllers\Controller;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Webpatser\Countries\Countries;
 
@@ -25,6 +22,7 @@ class UserController extends Controller
         $users = $users->orderBy('created_at', 'desc')->paginate(30);
 
         $countries = $countries->getListForSelect();
+        $countries[0] = '- none selected -';
 
         return view('user.index', compact('users', 'countries'));
     }

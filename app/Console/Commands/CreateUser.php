@@ -29,6 +29,9 @@ class CreateUser extends Command
     public function handle()
     {
 
+        /**
+         * For a new user we collect a name, email, role and a password.
+         */
         $name = $this->validateInput(
             function () {
                 return $this->ask('Please enter a name');
@@ -43,18 +46,36 @@ class CreateUser extends Command
             ['email', 'required|email']
         );
 
+        $roles = [
+            User::USERROLE_ISP => 'ISP',
+            User::USERROLE_CMSSECURITY => 'CMS Security Team',
+            User::USERROLE_CMSGARDEN => 'CMS Garden Admin',
+        ];
+
+        $roleName = $this->choice(
+            'Please select a role',
+            $roles,
+            User::USERROLE_ISP
+        );
+
+        // Laravel returns the value not the key in a multiple choice,
+        $role = array_search($roleName, $roles);
+
+        // The form validation "password_confirmation" seems not to work for the console.
+        $passwordValidationRules = 'required|min:8';
+
         $password = $this->validateInput(
             function () {
                 return $this->secret('Please enter a password');
             },
-            ['password', 'required|min:8']
+            ['password', $passwordValidationRules]
         );
 
         $password_match = $this->validateInput(
             function () {
                 return $this->secret('Please repeat your password');
             },
-            ['password', 'required|min:8']
+            ['password', $passwordValidationRules]
         );
 
         if ($password !== $password_match) {
@@ -67,6 +88,7 @@ class CreateUser extends Command
         $user->name     = $name;
         $user->email    = $email;
         $user->password = bcrypt($password);
+        $user->role     = $role;
 
         $user->save();
         $this->info(sprintf('Created user %s,', $name));
@@ -94,6 +116,7 @@ class CreateUser extends Command
 
     /**
      * Create a validator and try to validate the given value.
+     *
      * @param $rules
      * @param $value
      * @return bool|string
