@@ -6,7 +6,6 @@ use App\User;
 use Illuminate\Console\Command;
 use Validator;
 
-
 class CreateUser extends Command
 {
     /**
@@ -30,21 +29,25 @@ class CreateUser extends Command
     public function handle()
     {
 
-        $name = $this->validateInput(function () {
-            return $this->ask('Please enter a name');
-        }, ['name', 'required']);
+        $name = $this->validateInput(
+            function () {
+                return $this->ask('Please enter a name');
+            }, ['name', 'required']);
 
-        $email = $this->validateInput(function () {
-            return $this->ask('Please enter an email');
-        }, ['email', 'required|email']);
+        $email = $this->validateInput(
+            function () {
+                return $this->ask('Please enter an email');
+            }, ['email', 'required|email']);
 
-        $password = $this->validateInput(function () {
-            return $this->secret('Please enter a password');
-        }, ['password', 'required|min:8']);
+        $password = $this->validateInput(
+            function () {
+                return $this->secret('Please enter a password');
+            }, ['password', 'required|min:8']);
 
-        $password_match = $this->validateInput(function () {
-            return $this->secret('Please repeat your password');
-        }, ['password', 'required|min:8']);
+        $password_match = $this->validateInput(
+            function () {
+                return $this->secret('Please repeat your password');
+            }, ['password', 'required|min:8']);
 
         if ($password !== $password_match) {
             $this->warn('Your passwords did not match. Please run the command again.');
