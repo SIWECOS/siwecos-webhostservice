@@ -4,7 +4,6 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
-use gnupg;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,15 +17,14 @@ class AppServiceProvider extends ServiceProvider
         \Schema::defaultStringLength(191);
 
         Validator::extend('pgpkey', function ($attribute, $value, $parameters, $validator) {
-            $gpg = new gnupg();
-            $result = $gpg->import($value);
+            $gpg = new \Crypt_GPG();
+            $result = $gpg->importKey($value);
 
-            return ($result !== false);
+            return (!empty($result["fingerprints"]));
         });
 
         Validator::extend('pgpsignature', function ($attribute, $value, $parameters, $validator) {
-            $gpg = new \gnupg();
-            $plaintext = "";
+            $gpg = new \Crypt_GPG();
             $expectedPlainText = false;
 
             // Check for existence of plaintext attribute
@@ -34,10 +32,10 @@ class AppServiceProvider extends ServiceProvider
                 $expectedPlainText = $validator->getData()[$parameters[0]];
             }
 
-            $result = $gpg->verify($value, false, $plaintext);
-
-            if ($result === false) {
-                \Log::debug("Verification failed");
+            try {
+                $result = $gpg->verify($value);
+            } catch (\Crypt_GPG_Exception $exception) {
+                \Log::debug("Verification failed:" . $exception->getMessage());
 
                 return false;
             }
@@ -48,17 +46,25 @@ class AppServiceProvider extends ServiceProvider
                 return false;
             }
 
-            if (($result[0]["summary"] & 0x04) == 0x04) {
+            if (!$result[0]->isValid()) {
                 \Log::debug("Bad signature");
 
                 return false;
             }
 
-            if ($result[0]["fingerprint"] !== "4BE92C5424C889B894A846B099ECCB47D09C48AD") {
+            if ($result[0]->getKeyFingerprint() !== "4BE92C5424C889B894A846B099ECCB47D09C48AD") {
                 \Log::debug("Invalid signing key");
 
                 return false;
             }
+
+            // Extract plaintext from signature
+            preg_match(
+                '/Hash: \S*\n\n(.*)-----BEGIN PGP SIGNATURE-----/ms',
+                str_replace("\r\n", "\n", $value),
+                $matches
+            );
+            $plaintext = $matches[1];
 
             if ($expectedPlainText !== false && trim($plaintext) !== trim($expectedPlainText)) {
                 \Log::debug("Mismatch between mail template and signed text");

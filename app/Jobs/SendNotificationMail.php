@@ -39,14 +39,20 @@ class SendNotificationMail implements ShouldQueue
         $users = $users->where('approved', '=', '1')->get();
 
         foreach ($users as $user) {
-            $gpg = new \gnupg();
+            $gpg = new \Crypt_GPG();
 
-            // Get fingerprint and add to encryption list
-            $keyinfo = $gpg->import($user->pgpkey);
-            $gpg->addencryptkey($keyinfo["fingerprint"]);
+            try {
+                // Get fingerprint and add to encryption list
+                $keyInfo = $gpg->importKey($user->pgpkey);
+                $gpg->addEncryptKey($keyInfo["fingerprint"]);
 
-            // Encrypt text with key of user
-            $text = $gpg->encrypt($this->data["signedemail"]);
+                // Encrypt text with key of user
+                $text = $gpg->encrypt($this->data["signedemail"]);
+            } catch (\Crypt_GPG_Exception $e) {
+                \Log::error("GPG error while sending: " . $e->getMessage());
+
+                continue;
+            }
 
             \Mail::to($user->email)->send(new NotificationMail($this->data, $text));
         }
