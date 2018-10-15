@@ -20,6 +20,7 @@ services:
       working_dir: /application
       volumes:
         - ..:/application
+        - ./db:/var/lib/mysql
       environment:
         - MYSQL_ROOT_PASSWORD=siwecos
         - MYSQL_DATABASE=siwecos
