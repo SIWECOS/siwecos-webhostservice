@@ -39,7 +39,14 @@ class SendNotificationMail implements ShouldQueue
         $users = $users->where('approved', '=', '1')->get();
 
         foreach ($users as $user) {
-            $gpg = new \Crypt_GPG();
+            $gpg = new \Crypt_GPG(
+                [
+                    "homedir" => env('GPG_HOMEDIR'),
+                    'binary' => env('GPG_BINARY'),
+                    'agent' => "",
+                    'gpgconf' => ""
+                ]
+            );
 
             try {
                 // Get fingerprint and add to encryption list

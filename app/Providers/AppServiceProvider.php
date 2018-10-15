@@ -17,14 +17,30 @@ class AppServiceProvider extends ServiceProvider
         \Schema::defaultStringLength(191);
 
         Validator::extend('pgpkey', function ($attribute, $value, $parameters, $validator) {
-            $gpg = new \Crypt_GPG();
+            $gpg = new \Crypt_GPG(
+                [
+                    "homedir" => env('GPG_HOMEDIR'),
+                    'binary' => env('GPG_BINARY'),
+                    'agent' => "",
+                    'gpgconf' => ""
+                ]
+            );
+
             $result = $gpg->importKey($value);
 
             return (!empty($result["fingerprints"]));
         });
 
         Validator::extend('pgpsignature', function ($attribute, $value, $parameters, $validator) {
-            $gpg = new \Crypt_GPG();
+            $gpg = new \Crypt_GPG(
+                [
+                    "homedir" => env('GPG_HOMEDIR'),
+                    'binary' => env('GPG_BINARY'),
+                    'agent' => "",
+                    'gpgconf' => ""
+                ]
+            );
+
             $expectedPlainText = false;
 
             // Check for existence of plaintext attribute
