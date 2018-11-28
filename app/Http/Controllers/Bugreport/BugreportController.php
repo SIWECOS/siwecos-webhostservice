@@ -39,7 +39,7 @@ class BugreportController extends Controller
             $request,
             [
                 'application'   => 'integer|min:1|max:5',
-                'exploittype'  => 'integer|min:1|max:7',
+                'exploittype'  => 'integer|min:1|max:8',
                 'version'       => 'max:100',
             ]
         );
@@ -61,7 +61,7 @@ class BugreportController extends Controller
             $request,
             [
                 'application'   => 'required|integer|min:1|max:5',
-                'exploittype'  => 'required|integer|min:1|max:7',
+                'exploittype'  => 'required|integer|min:1|max:8',
                 'infourl'       => 'required',
                 'version'       => 'required|max:100',
                 'vulnerability' => 'required',

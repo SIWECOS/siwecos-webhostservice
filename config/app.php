@@ -250,7 +250,8 @@ return [
             4 => 'CSRF',
             5 => 'Incorrect Access Control',
             6 => 'Directory Traversal',
-            7 => 'File Upload'
+            7 => 'File Upload',
+            8 => 'DOS'
         ]
     ]
 
