@@ -33,6 +33,14 @@ Route::group(['middleware' => 'checkguest'], function () {
 
     Route::get('/', 'Bugreport\BugreportController@index');
     Route::get('/bugreport/{id}', 'Bugreport\BugreportController@show');
+
+    Route::get(
+        '/pgpkey',
+        function () {
+            return view('pgpkey.index');
+        }
+    );
+
 });
 
 Route::group(['middleware' => 'iscmsgarden'], function () {

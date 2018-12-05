@@ -54,6 +54,7 @@
                                 @if (Auth::user()->isCMSGarden())
                                     <li><a href="{{ url('/users') }}">List of Users</a></li>
                                 @endif
+                                <li><a href="{{ url('/pgpkey') }}">PGP Pub Key</a></li>
                             @endif
                         </ul>
                         <!-- Right Side Of Navbar -->
