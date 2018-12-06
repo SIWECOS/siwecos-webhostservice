@@ -32,6 +32,10 @@
                             <?php echo $bugreports->render(); ?>
                         </ul>
                     </div>
+
+                    <div class="text-right">
+                        <a href="{{ action('Api\BugreportController@index') }}" class="small">Get JSON</a>
+                    </div>
                 </div>
             </div>
         </div>
